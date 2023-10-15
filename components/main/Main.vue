@@ -15,7 +15,7 @@ const code = ref(
 \`\`\`js
 console.log("helloworld");
 \`\`\`
-$$ Latex
+## Latex
 This is inline katex: $c = \\pm\\sqrt{a^2 + b^2}$
 
 This is block level katex:

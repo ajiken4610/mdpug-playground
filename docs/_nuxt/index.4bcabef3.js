@@ -1,4 +1,4 @@
-import{_ as m}from"./Markdown.95eabfde.js";import{o as c,c as r,a as s,b as n,_ as i,n as f,r as t,z as g,A as $,w as k,d as E,B as y,C as H,D as M,E as C,u as P}from"./entry.f8c67795.js";import{_ as b}from"./nuxt-link.e9fea5af.js";const B={class:"px-2"},L={class:"flex h-16 flex-row items-center overflow-x-auto overflow-y-hidden w-auto"},N=s("hr",{class:"py-1"},null,-1);function j(_,o){const e=m;return c(),r("div",null,[s("div",B,[s("div",L,[n(e,{class:"flex-none",md:"#### **MDPug Playground**"}),n(e,{class:"flex-none pl-2",md:"Easy to run `MDPug`"})])]),N])}const D={},R=i(D,[["render",j]]),T={class:"overflow-hidden"},z=f({__name:"Main",setup(_){const o=t(`# Welcome to MDPug!!!
+import{_ as m}from"./Markdown.924f4b10.js";import{o as c,c as r,a as s,b as n,_ as i,n as f,r as t,z as g,A as $,w as k,d as E,B as y,C as H,D as M,E as C,u as P}from"./entry.5240af64.js";import{_ as b}from"./nuxt-link.e8435f0a.js";const B={class:"px-2"},L={class:"flex h-16 flex-row items-center overflow-x-auto overflow-y-hidden w-auto"},N=s("hr",{class:"py-1"},null,-1);function j(_,o){const e=m;return c(),r("div",null,[s("div",B,[s("div",L,[n(e,{class:"flex-none",md:"#### **MDPug Playground**"}),n(e,{class:"flex-none pl-2",md:"Easy to run `MDPug`"})])]),N])}const D={},R=i(D,[["render",j]]),T={class:"overflow-hidden"},z=f({__name:"Main",setup(_){const o=t(`# Welcome to MDPug!!!
 ## Extended tables
 | This header spans two   || Header A |
 | columns *and* two rows ^|| Header B |
@@ -8,7 +8,7 @@ import{_ as m}from"./Markdown.95eabfde.js";import{o as c,c as r,a as s,b as n,_ 
 \`\`\`js
 console.log("helloworld");
 \`\`\`
-$$ Latex
+## Latex
 This is inline katex: $c = \\pm\\sqrt{a^2 + b^2}$
 
 This is block level katex:

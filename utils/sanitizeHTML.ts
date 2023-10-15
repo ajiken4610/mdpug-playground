@@ -1,3 +1,3 @@
 import createDomPurify from "dompurify";
 const sanitize = createDomPurify().sanitize;
-export default (dirty: string) => sanitize(dirty);
+export default (dirty: string) => sanitize(dirty, { FORBID_TAGS: ["style"] });
