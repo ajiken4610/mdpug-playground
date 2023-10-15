@@ -15,7 +15,7 @@ import markedLinkifyIt from "marked-linkify-it";
 
 import markedFootnote from "marked-footnote";
 
-export default async (text: string) => {
+export default async (text: string, footnote: string = "Footnotes") => {
   const marked = new Marked();
 
   marked.use(extendedTables());
@@ -54,6 +54,6 @@ export default async (text: string) => {
       },
     }),
   );
-  marked.use(markedFootnote());
+  marked.use(markedFootnote({ description: footnote }));
   return sanitizeHTML(await marked.parse(text, { breaks: true }));
 };

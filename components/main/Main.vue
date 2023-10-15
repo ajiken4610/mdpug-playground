@@ -34,12 +34,7 @@ github.com
 helloworld[^helloworld]
 
 [^helloworld]: helloworld is a famous programming source code.
-`);
-code.value = `
-hello[^1]
-
-[^1]: hello
-`
+`,
+);
 provide("code", code);
-
 </script>

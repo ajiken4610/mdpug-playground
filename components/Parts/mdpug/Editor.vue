@@ -9,10 +9,10 @@ const props = defineProps<{
   modelValue: string;
 }>();
 const emit = defineEmits(["update:modelValue"]);
-const code = ref(props.modelValue)
-watch(toRef(props, "modelValue"), (text) => code.value = text)
-const debounsedCode = refDebounced(code, 500)
+const code = ref(props.modelValue);
+watch(toRef(props, "modelValue"), (text) => (code.value = text));
+const debounsedCode = refDebounced(code, 500);
 watch(debounsedCode, (code) => {
-  emit("update:modelValue", code)
-})
+  emit("update:modelValue", code);
+});
 </script>
