@@ -10,6 +10,7 @@ const props = withDefaults(defineProps<{ md: string }>(), {
 const parsed = ref("");
 watchEffect(async () => {
   parsed.value = await parseMD(props.md);
+  // console.log(props.md, parsed.value)
 });
 </script>
 
@@ -30,7 +31,24 @@ $headings: "h1", "h2", "h3", "h4", "h5", "h6";
   .md :deep(h#{$headingIndex}) {
     font-size: (8 - $headingIndex) * 0.5rem;
   }
+
+  .md :deep(h#{$headingIndex}>img) {
+    display: inline;
+  }
+
+  .md :deep(.h#{$headingIndex}) {
+    margin-left: $headingIndex - 1rem;
+  }
 }
+
+.md :deep(a img) {
+  display: inline;
+}
+
+.md :deep(a) {
+  text-decoration: underline;
+}
+
 
 .md :deep(code) {
   border: 1px solid black;

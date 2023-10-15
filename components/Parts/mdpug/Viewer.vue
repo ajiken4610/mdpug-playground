@@ -1,0 +1,55 @@
+<!-- eslint-disable @vue/no-v-html -->
+<template lang="pug">
+.mdpug(v-html="parsed")
+</template>
+
+<script setup lang="ts">
+const props = withDefaults(defineProps<{ mdpug: string }>(), { mdpug: "# NO_MDPUG_PROVIDED" })
+// const parsed = computed(() => parseSanitizedMDPug(props.mdpug))
+const parsed = ref("")
+watchEffect(async () => {
+  parsed.value = await parseMD(props.mdpug)
+})
+</script>
+<style scoped lang="scss">
+.mdpug :deep(ul) {
+  list-style-type: disc;
+  padding-left: 2rem;
+}
+
+.mdpug :deep(ol) {
+  list-style-type: decimal;
+  padding-left: 1rem;
+}
+
+$headings: "h1", "h2", "h3", "h4", "h5", "h6";
+
+@for $headingIndex from 1 through 6 {
+  .mdpug:deep(h#{$headingIndex}) {
+    font-size: (8 - $headingIndex) * 0.5rem;
+  }
+}
+
+.mdpug :deep(code) {
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.mdpug :deep(blockquote) {
+  border-left: 0.25rem solid;
+  padding-left: 0.5rem;
+  border-color: gray;
+}
+
+.mdpug :deep(table) {
+  border-spacing: 0px;
+}
+
+.mdpug :deep(td),
+.mdpug :deep(th) {
+  border: 1px black solid;
+  padding: 0.2rem;
+}
+</style>
