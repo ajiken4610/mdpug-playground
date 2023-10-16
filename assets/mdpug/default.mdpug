@@ -2,26 +2,24 @@
 **Markdown + Pug**
 
 ````!pug
-- let b = (b) => {let o = pug_html; pug_html = ""; b(); let r = pug_html; pug_html = o;return r}
+- b = (b) => {o = pug_html; pug_html = ""; b(); r = pug_html; pug_html = o;return r}
 
-mixin section(title,i=3)
-  - let m = 0
-  - m = md(`${"#".repeat(i)} ${title}`)
-  div!= m
-  block
+mixin section(title,i)
+  div(style={"margin-top":".5rem"})
+  - p = md(`${"#".repeat(i)} ${title}`)
+  div!= p
+  div(style={"margin-bottom":".5rem","border-bottom":"1px solid gray"})
+  - p = block && md(b(block))
+  div!= p
 
 mixin example(title)
-  div(style={"margin-top":".5rem"})
-  - let t = md("## " + title)
-  div!= t
-  div(style={"margin-bottom":".5rem","border-bottom":"1px solid gray"})
-  - let source = b(block)
-  +section("Source")
-    - p = md("````md\n" + source + "\n````")
-    div!= p
-  +section("Result")
-    - p = md(source)
-    div(style={"border":"1px solid","border-radius":".25rem"})!= p
+  +section(title,2)
+  - source = b(block)
+  +section("Source",3).
+    ````md
+    #{source}
+    ````
+  +section("Result",3)!= source
 
 +example("Markdown").
   # title
@@ -42,7 +40,7 @@ mixin example(title)
 +example("DYNAMIC Markdown in Pug in Markdown").
   ```!pug
   - for(var i = 0;i < 3;i++)
-    - let p = md(`${'#'.repeat(i+1)} ***Variables can be used here: ${i}***`)
+    - p = md(`${'#'.repeat(i+1)} ***Variables can be used here: ${i}***`)
     div!= p
   ```
 

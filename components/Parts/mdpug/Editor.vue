@@ -1,7 +1,7 @@
 <template lang="pug">
 .border-2.rounded-2xl.p-2.h-full.font-mono
   .h-full.overflow-y-hidden
-    textarea.w-full.h-full.bg-transparent.resize-none(
+    textarea.w-full.h-full.bg-transparent.resize-none.whitespace-nowrap(
       ref="textareaRef",
       v-model="code",
       class="focus:outline-0"
