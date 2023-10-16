@@ -1,54 +1,49 @@
 # MDPug
 **Markdown + Pug**
 
-```!pug
+````!pug
+- let b = (b) => {let o = pug_html; pug_html = ""; b(); let r = pug_html; pug_html = o;return r}
+
 mixin section(title,i=3)
   - let m = 0
   - m = md(`${"#".repeat(i)} ${title}`)
   div!= m
   block
 
-mixin example(source)
+mixin example(title)
   div(style={"margin-top":".5rem"})
-  block
+  - let t = md("## " + title)
+  div!= t
   div(style={"margin-bottom":".5rem","border-bottom":"1px solid gray"})
-  - let p
+  - let source = b(block)
   +section("Source")
-    - p = md(o("````md","````"))
+    - p = md("````md\n" + source + "\n````")
     div!= p
   +section("Result")
-    - p = md(m)
+    - p = md(source)
     div(style={"border":"1px solid","border-radius":".25rem"})!= p
 
-- let m = ""
-- let b = (n) => m += n + "\n"
-- let o = (s,e) => s + "\n" + m + e + "\n"
-- let r = () => m = ""
++example("Markdown").
+  # title
+  This is Markdown-decorated text.
 
-- b("# Title")
-- b("This is Markdown-decorated text.")
-+example(m): :md ## Markdown
-- r()
++example("Pug in Markdown").
+  ```!pug
+  - for(var i = 0;i < 3;i++)
+    div \#{i}
+  ```
 
-- b("```!pug")
-- b("- for(var i = 0;i < 3;i++)")
-- b("    div #{i}")
-- b("```")
-+example(m): :md ## Pug in Markdown
-- r()
++example("STATIC Markdown in Pug in Markdown").
+  ```!pug
+  - for(var i = 0;i < 3;i++)
+    :md ##### No variable can be used here. So, this won't work: \#{i} or ${i}
+  ```
 
-- b("```!pug")
-- b("- for(var i = 0;i < 3;i++)")
-- b("  :md ##### No variable can be used here. So, this won't work: #{i} or ${i}")
-- b("```")
-+example(m): :md ## STATIC Markdown in Pug in Markdown
-- r()
++example("DYNAMIC Markdown in Pug in Markdown").
+  ```!pug
+  - for(var i = 0;i < 3;i++)
+    - let p = md(`${'#'.repeat(i+1)} ***Variables can be used here: ${i}***`)
+    div!= p
+  ```
 
-- b("```!pug")
-- b("- for(var i = 0;i < 3;i++)")
-- b("  - let p = md(`${'#'.repeat(i+1)} ***Variables can be used here: ${i}***`)")
-- b("  div!= p")
-- b("```")
-+example(m): :md ## DYNAMIC Markdown in Pug in Markdown
-- r()
-```
+````

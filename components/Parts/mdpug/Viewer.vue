@@ -51,6 +51,10 @@ $headings: "h1", "h2", "h3", "h4", "h5", "h6";
   padding-right: 0.25rem;
 }
 
+.mdpug :deep(pre) {
+  overflow-x: auto;
+}
+
 .mdpug :deep(blockquote) {
   border-left: 0.25rem solid;
   padding-left: 0.5rem;
