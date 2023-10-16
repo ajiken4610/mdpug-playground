@@ -39,7 +39,7 @@ mixin example(source)
 
 - b("```!pug")
 - b("- for(var i = 0;i < 3;i++)")
-- b("  :md ##### No variable can be used here. So, this won't be work: #{i} or ${i}")
+- b("  :md ##### No variable can be used here. So, this won't work: #{i} or ${i}")
 - b("```")
 +example(m): :md ## STATIC Markdown in Pug in Markdown
 - r()
