@@ -3,12 +3,13 @@ import ParseWorker from "~/workers/MDPugPerserWorker?worker";
 export default (
   mdpug: string,
   footnotes: string = "Footnotes",
+  variables?: { [key: string]: unknown },
   allowStyle: boolean = false,
   timeout: number = 1000,
 ) => {
   return new Promise<string>((resolve, reject) => {
     const worker = new ParseWorker();
-    worker.postMessage({ mdpug, footnotes, allowStyle });
+    worker.postMessage({ mdpug, footnotes, variables, allowStyle });
     const id = setTimeout(() => {
       worker.terminate();
       reject("Parse operation timeout.");

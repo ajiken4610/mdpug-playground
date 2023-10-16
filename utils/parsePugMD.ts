@@ -25,20 +25,23 @@ export const initPromise = new Promise<void>((resolve) => {
   );
 });
 let outerFootnote = "";
+let outerVariables: { [key: string]: unknown } = {};
 const options = {
   filters: {
     md: (text: string) => {
-      return parseMDPug(text, outerFootnote);
+      return parseMDPug(text, outerFootnote, outerVariables);
     },
   },
 };
 
-export default (pugmd: string, footnote: string = "Footnote") => {
+export default (
+  pugmd: string,
+  footnote: string = "Footnote",
+  variables?: { [key: string]: unknown },
+) => {
   outerFootnote = footnote;
-  return pug.compile(
-    pugmd,
-    options,
-  )({
-    md: (text: string) => parseMDPug(text, footnote),
-  });
+  outerVariables = variables || {};
+  outerVariables["md"] = (text: string) =>
+    parseMDPug(text, footnote, outerVariables);
+  return pug.compile(pugmd, options)(outerVariables);
 };

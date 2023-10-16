@@ -14,7 +14,7 @@ const parsed = ref("");
 watchEffect(async () => {
   let error = false;
   try {
-    parsed.value = await parseSanitizedMDPugOnWorker(props.mdpug);
+    parsed.value = await parseSanitizedMDPugOnWorker(props.mdpug, "Footnotes:");
   } catch (e) {
     emit("log", (e as { toString: () => string }).toString().split("\n")[0]!);
     error = true;

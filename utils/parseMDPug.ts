@@ -14,9 +14,10 @@ import markedFootnote from "marked-footnote";
 
 const renderer = new Renderer();
 let outerFootnote = "";
+let outerVariables: { [key: string]: unknown } | undefined = {};
 renderer.code = (code, info) => {
   if (info === "!pug") {
-    return parsePugMD(code, outerFootnote);
+    return parsePugMD(code, outerFootnote, outerVariables);
   } else {
     const language = hljs.getLanguage(info || "") ? info || "" : "plaintext";
     const parsed = hljs.highlight(code, { language }).value;
@@ -24,9 +25,13 @@ renderer.code = (code, info) => {
   }
 };
 
-export default (mdpug: string, footnote: string = "Footnotes") => {
-  outerFootnote = footnote;
-
+export default (
+  mdpug: string,
+  footnotes: string = "Footnotes",
+  variables?: { [key: string]: unknown },
+) => {
+  outerFootnote = footnotes;
+  outerVariables = variables;
   const marked = new Marked();
 
   marked.use(extendedTables());
@@ -55,7 +60,7 @@ export default (mdpug: string, footnote: string = "Footnotes") => {
       },
     }),
   );
-  marked.use(markedFootnote({ description: footnote }));
+  marked.use(markedFootnote({ description: footnotes }));
   const parsed = marked.parse(mdpug, { breaks: true, renderer }) as string;
   return parsed;
 };
