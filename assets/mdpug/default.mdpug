@@ -1,0 +1,47 @@
+# MDPug
+**Markdown + Pug**
+
+```!pug
+mixin section(title,i=3)
+  - let m = 0
+  - m = md(`${"#".repeat(i)} ${title}`)
+  div!= m
+  block
+
+mixin example(source)
+  div(style={"margin-top":".5rem"})
+  block
+  div(style={"margin-bottom":".5rem","border-bottom":"1px solid gray"})
+  - let p
+  +section("Source")
+    - p = md(o("````md","````"))
+    div!= p
+  +section("Result")
+    - p = md(m)
+    div(style={"border":"1px solid","border-radius":".25rem"})!= p
+
+- let m = ""
+- let b = (n) => m += n + "\n"
+- let o = (s,e) => s + "\n" + m + e + "\n"
+- let r = () => m = ""
+
+- b("# Title")
+- b("This is Markdown-decorated text.")
++example(m): :md ## Markdown
+- r()
+
+- b("```!pug")
+- b("- for(var i = 0;i < 3;i++)")
+- b("    div #{i}")
+- b("```")
++example(m): :md ## Pug in Markdown
+- r()
+
+- b("```!pug")
+- b("- for(var i = 0;i < 3;i++)")
+- b("  - let p = md(`${'#'.repeat(i+1)} ***${i}***`)")
+- b("  div!= p")
+- b("```")
++example(m): :md ## Markdown in Pug in Markdown
+- r()
+```

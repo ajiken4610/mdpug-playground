@@ -1,6 +1,11 @@
 <template lang="pug">
-.overflow-y-hidden.h-full
-  textarea.h-full.w-full(v-model="code")
+.border-2.rounded-2xl.p-2.h-full.font-mono
+  .h-full.overflow-y-hidden
+    textarea.w-full.h-full.bg-transparent.resize-none(
+      ref="textareaRef",
+      v-model="code",
+      class="focus:outline-0"
+    )
 </template>
 
 <script setup lang="ts">

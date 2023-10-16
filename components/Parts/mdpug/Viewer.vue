@@ -7,10 +7,19 @@
 const props = withDefaults(defineProps<{ mdpug: string }>(), {
   mdpug: "# NO_MDPUG_PROVIDED",
 });
-// const parsed = computed(() => parseSanitizedMDPug(props.mdpug))
+const emit = defineEmits<(e: "log", message: string) => unknown>();
 const parsed = ref("");
 watchEffect(async () => {
-  parsed.value = await parseMD(props.mdpug);
+  let error = false;
+  try {
+    parsed.value = await parseSanitizedMDPug(props.mdpug);
+  } catch (e) {
+    emit("log", e.toString().split("\n")[0]);
+    error = true;
+  }
+  if (!error) {
+    emit("log");
+  }
 });
 </script>
 <style scoped lang="scss">
@@ -32,7 +41,8 @@ $headings: "h1", "h2", "h3", "h4", "h5", "h6";
   }
 }
 
-.mdpug :deep(code) {
+.mdpug :deep(pre),
+.mdpug :deep(:not(pre) > code) {
   border: 1px solid black;
   border-radius: 0.25rem;
   padding-left: 0.25rem;
