@@ -1,4 +1,4 @@
-import{_ as u}from"./Markdown.653c604b.js";import{o as i,c,a as s,b as n,_ as d,f as p,r as t,q as w,s as g,w as k,d as M,x as $,y,z as P,A as E,h as H}from"./entry.e332bb29.js";import{_ as N}from"./nuxt-link.3641a23a.js";import"./katex.min.0a87eea6.js";const C={class:"px-2"},R={class:"flex h-16 flex-row items-center overflow-x-auto overflow-y-hidden w-auto"},T=s("hr",{class:"py-1"},null,-1);function D(l,o){const e=u;return i(),c("div",null,[s("div",C,[s("div",R,[n(e,{class:"flex-none",md:"#### **MDPug Playground**"}),n(e,{class:"flex-none pl-2",md:"Easy to run `MDPug`"})])]),T])}const I={},S=d(I,[["render",D]]),V=`# MDPug
+import{_ as u}from"./Markdown.7380c295.js";import{o as i,c,a as s,b as n,_ as d,f as p,r as t,q as w,s as g,w as k,d as M,x as $,y,z as P,A as E,h as H}from"./entry.6e3ed865.js";import{_ as N}from"./nuxt-link.204dd0a5.js";import"./katex.min.0a87eea6.js";const C={class:"px-2"},R={class:"flex h-16 flex-row items-center overflow-x-auto overflow-y-hidden w-auto"},T=s("hr",{class:"py-1"},null,-1);function D(l,o){const e=u;return i(),c("div",null,[s("div",C,[s("div",R,[n(e,{class:"flex-none",md:"#### **MDPug Playground**"}),n(e,{class:"flex-none pl-2",md:"Easy to run `MDPug`"})])]),T])}const I={},S=d(I,[["render",D]]),V=`# MDPug
 **Markdown + Pug**
 
 \`\`\`!pug
@@ -46,7 +46,7 @@ mixin example(source)
 
 - b("\`\`\`!pug")
 - b("- for(var i = 0;i < 3;i++)")
-- b("  - let p = md(\`\${'#'.repeat(i+1)} ***Variable can be used here: \${i}***\`)")
+- b("  - let p = md(\`\${'#'.repeat(i+1)} ***Variables can be used here: \${i}***\`)")
 - b("  div!= p")
 - b("\`\`\`")
 +example(m): :md ## DYNAMIC Markdown in Pug in Markdown

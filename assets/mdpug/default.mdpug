@@ -46,7 +46,7 @@ mixin example(source)
 
 - b("```!pug")
 - b("- for(var i = 0;i < 3;i++)")
-- b("  - let p = md(`${'#'.repeat(i+1)} ***Variable can be used here: ${i}***`)")
+- b("  - let p = md(`${'#'.repeat(i+1)} ***Variables can be used here: ${i}***`)")
 - b("  div!= p")
 - b("```")
 +example(m): :md ## DYNAMIC Markdown in Pug in Markdown
