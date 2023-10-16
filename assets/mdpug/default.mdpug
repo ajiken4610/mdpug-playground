@@ -39,9 +39,16 @@ mixin example(source)
 
 - b("```!pug")
 - b("- for(var i = 0;i < 3;i++)")
-- b("  - let p = md(`${'#'.repeat(i+1)} ***${i}***`)")
+- b("  :md ##### No variable can be used here. So, this won't be work: #{i} or ${i}")
+- b("```")
++example(m): :md ## STATIC Markdown in Pug in Markdown
+- r()
+
+- b("```!pug")
+- b("- for(var i = 0;i < 3;i++)")
+- b("  - let p = md(`${'#'.repeat(i+1)} ***Variable can be used here: ${i}***`)")
 - b("  div!= p")
 - b("```")
-+example(m): :md ## Markdown in Pug in Markdown
++example(m): :md ## DYNAMIC Markdown in Pug in Markdown
 - r()
 ```
