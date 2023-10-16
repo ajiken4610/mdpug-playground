@@ -66,4 +66,8 @@ $headings: "h1", "h2", "h3", "h4", "h5", "h6";
   border: 1px black solid;
   padding: 0.2rem;
 }
+
+.mdpug :deep(a) {
+  text-decoration: underline;
+}
 </style>
