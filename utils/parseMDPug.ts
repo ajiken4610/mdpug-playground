@@ -5,10 +5,8 @@ import parsePugMD from "./parsePugMD";
 import extendedTables from "marked-extended-tables";
 
 import hljs from "highlight.js";
-import "highlight.js/styles/github.css";
 
 import markedKatex from "marked-katex-extension";
-import "katex/dist/katex.min.css";
 
 import markedLinkifyIt from "marked-linkify-it";
 
@@ -58,6 +56,6 @@ export default (mdpug: string, footnote: string = "Footnotes") => {
     }),
   );
   marked.use(markedFootnote({ description: footnote }));
-  const parsed = marked.parse(mdpug, { breaks: true, renderer });
+  const parsed = marked.parse(mdpug, { breaks: true, renderer }) as string;
   return parsed;
 };

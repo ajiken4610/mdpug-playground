@@ -1,13 +1,13 @@
-import pugURL from "assets/js/pug.min.js?url";
 import parseMDPug from "./parseMDPug";
 import { install, configure } from "browserfs";
 import type Pug from "pug";
-install(window);
-let pug: Pug;
+install(globalThis);
+let pug: typeof Pug;
 export const initPromise = new Promise<void>((resolve) => {
   configure(
     {
-      fs: "LocalStorage",
+      fs: "InMemory",
+      options: {},
     },
     function (e) {
       if (e) {
@@ -16,10 +16,8 @@ export const initPromise = new Promise<void>((resolve) => {
         throw e;
       }
       // Otherwise, BrowserFS is ready-to-use!
-      const script = document.createElement("script");
-      script.src = pugURL;
-      document.body.appendChild(script);
-      script.addEventListener("load", () => {
+      import("assets/js/pug.min.js?raw").then((rawJS) => {
+        eval(rawJS.default);
         pug = require("pug");
         resolve();
       });
@@ -41,6 +39,6 @@ export default (pugmd: string, footnote: string = "Footnote") => {
     pugmd,
     options,
   )({
-    md: (text) => parseMDPug(text, footnote),
+    md: (text: string) => parseMDPug(text, footnote),
   });
 };

@@ -22,4 +22,9 @@ export default defineNuxtConfig({
   app: {
     cdnURL: "/mdpug-playground/",
   },
+  vite: {
+    worker: {
+      format: "es",
+    },
+  },
 });

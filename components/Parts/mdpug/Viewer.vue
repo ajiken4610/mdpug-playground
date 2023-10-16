@@ -4,6 +4,8 @@
 </template>
 
 <script setup lang="ts">
+import "highlight.js/styles/github.css";
+import "katex/dist/katex.min.css";
 const props = withDefaults(defineProps<{ mdpug: string }>(), {
   mdpug: "# NO_MDPUG_PROVIDED",
 });
@@ -12,13 +14,13 @@ const parsed = ref("");
 watchEffect(async () => {
   let error = false;
   try {
-    parsed.value = await parseSanitizedMDPug(props.mdpug);
+    parsed.value = await parseSanitizedMDPugOnWorker(props.mdpug);
   } catch (e) {
-    emit("log", e.toString().split("\n")[0]);
+    emit("log", (e as { toString: () => string }).toString().split("\n")[0]!);
     error = true;
   }
   if (!error) {
-    emit("log");
+    emit("log", "");
   }
 });
 </script>
