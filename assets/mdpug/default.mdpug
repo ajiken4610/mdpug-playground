@@ -5,10 +5,8 @@
 - b = (b) => {o = pug_html; pug_html = ""; b(); r = pug_html; pug_html = o;return r}
 
 mixin section(title,i)
-  div(style={"margin-top":".5rem"})
   - p = md(`${"#".repeat(i)} ${title}`)
-  div!= p
-  div(style={"margin-bottom":".5rem","border-bottom":"1px solid gray"})
+  div(style={"margin-top":".5rem","margin-bottom":".5rem","border-bottom":"1px solid gray"})!= p
   - p = block && md(b(block))
   div!= p
 
