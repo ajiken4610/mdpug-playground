@@ -20,4 +20,67 @@ const debounsedCode = refDebounced(code, 500);
 watch(debounsedCode, (code) => {
   emit("update:modelValue", code);
 });
+const textareaRef = ref<HTMLTextAreaElement>();
+onMounted(() => {
+  if (!textareaRef.value) {
+    return;
+  }
+  const textarea = textareaRef.value;
+  textarea.addEventListener("keydown", (ev) => {
+    const text = code.value;
+    const lines = text.split("\n");
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const startLine = getLineNumber(text, start);
+    const endLine = getLineNumber(text, end);
+    if (ev.key === "Tab") {
+      ev.preventDefault();
+      if (ev.shiftKey) {
+        let operated = 0;
+        let firstLineOperated = 0;
+        for (var i = startLine; i < endLine + 1; i++) {
+          if (lines[i]?.substring(0, 2) === "  ") {
+            lines[i] = lines[i]?.substring(2) || "";
+            operated++;
+            i === startLine && (firstLineOperated = 1);
+          }
+        }
+        code.value = lines.join("\n");
+        nextTick(() => {
+          textarea.selectionStart =
+            startLine === endLine
+              ? start - operated * 2
+              : start - 2 * firstLineOperated;
+          textarea.selectionEnd = end - operated * 2;
+        });
+      } else {
+        for (var i = startLine; i < endLine + 1; i++) {
+          lines[i] = "  " + lines[i];
+        }
+        code.value = lines.join("\n");
+        nextTick(() => {
+          textarea.selectionStart =
+            startLine === endLine
+              ? start + (endLine - startLine + 1) * 2
+              : start + 2;
+          textarea.selectionEnd = end + (endLine - startLine + 1) * 2;
+        });
+      }
+    } else if (ev.key === "Enter" && start === end) {
+      ev.preventDefault();
+      let deletedCount = endLine - startLine;
+      for (var i = startLine + 1; i < endLine + 1; i++) {
+        lines.splice(startLine, endLine - startLine);
+      }
+      const prevLineSpace =
+        (lines[startLine - deletedCount] || "").match(/ */g)?.[0]?.length || 0;
+      lines.splice(startLine - deletedCount + 1, 0, " ".repeat(prevLineSpace));
+      code.value = lines.join("\n");
+      nextTick(() => {
+        textarea.selectionStart = start + prevLineSpace + 1;
+        textarea.selectionEnd = start + prevLineSpace + 1;
+      });
+    }
+  });
+});
 </script>
