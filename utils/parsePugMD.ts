@@ -53,7 +53,7 @@ export default (
   //       .toString(),
   //   );
   return pug.compile(
-    '- var b = (b) => {var o = pug_html; pug_html = ""; b(); var e = pug_html; pug_html = o;return e}, r = (s) => pug_html += s\n' +
+    '- var b = (b) => {var o = pug_html; pug_html = ""; b(); var e = pug_html; pug_html = o;return e}, r = (s) => pug_html += s\nmixin md\n  - r(md(b(block)))\n' +
       pugmd,
     options,
   )(outerVariables);

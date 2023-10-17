@@ -36,10 +36,11 @@ mixin example(title)
 +example("*DYNAMIC* Markdown in Pug in Markdown").
   ```!pug
   - for(var i = 0;i < 3;i++)
-    - r(md(`> Variables can be used here: ${i}`))
+    +md.
+      > Variables can be used here: \#{i}
   ```
 
-+example("Declared functions and filters which can be used in Pug statements").
++example("Declared functions, mixins and filters which can be used in Pug statements").
   #### r(html)
   `r(html)` will render HTML received in arguments.
   This is commonly used with md() or b(block) function.
@@ -55,16 +56,24 @@ mixin example(title)
   +test
   +test This text will appear in console.
   ```
-  #### md(markdown)
-  `md(markdown)` compiles the Markdown received as an argument into HTML and returns it.
-  This is commonly used with r() function.
-  ```!pug
-  - r(md(`> Random number: ${Math.random()}`))
-  ```
   #### :md markdown
   `:md markdown` allows you to write STATIC Markdown in Pug.
   Please note that **NO** variables defined in Pug can be used within this filter.
   ```!pug
-  :md > This statement is decorated using Markdown.
+  :md > This statement is **decorated** using Markdown.
+  ```
+  #### +md markdown
+  `+md markdown` compiles the Markdown received as a block into HTML and render it.
+  ```!pug
+  - var text = "This is the text declared within variable."
+  +md.
+    > This text is **decorated** within Markdown.
+    > Variables can be used here: \#{text}
+  ```
+  #### md(markdown)
+  `md(markdown)` compiles the Markdown received as an argument into HTML and returns it.
+  This is commonly used with r() function.
+  ```!pug
+  - r(md(`> Random number: \`${Math.random()}\``))
   ```
 ````
