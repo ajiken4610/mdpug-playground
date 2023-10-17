@@ -48,6 +48,7 @@ mixin example(title)
   ```
   #### b(block)
   `b(block)` will return mixin block as string.
+  See console.
   ```!pug
   mixin test
     - block && console.log(b(block))
