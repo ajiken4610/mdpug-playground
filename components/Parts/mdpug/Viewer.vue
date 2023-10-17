@@ -3,9 +3,7 @@ iframe.w-full.h-full(:src="url")
 </template>
 
 <script setup lang="ts">
-import "highlight.js/styles/github.css";
-import highlightcss from "highlight.js/styles/github.css?raw";
-import "katex/dist/katex.min.css";
+import highlightcss from "highlight.js/styles/github.min.css?raw";
 import katexcss from "katex/dist/katex.min.css?raw";
 import mdcss from "assets/css/md.css?raw";
 const props = withDefaults(defineProps<{ mdpug: string }>(), {
@@ -23,8 +21,9 @@ watchEffect(async () => {
       true,
       10000,
     );
+    const inserted = makeATagTop(parsed, true);
     url.value = getDataUrl(
-      parsed + `<style>${highlightcss}${katexcss}${mdcss}</style>`,
+      inserted + `<style>${highlightcss}${katexcss}${mdcss}</style>`,
     );
   } catch (e) {
     emit("log", (e as { toString: () => string }).toString().split("\n")[0]!);
