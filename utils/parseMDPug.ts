@@ -9,6 +9,7 @@ import hljs from "highlight.js";
 import markedKatex from "marked-katex-extension";
 
 import markedLinkifyIt from "marked-linkify-it";
+import tlds from "tlds";
 
 import markedFootnote from "marked-footnote";
 
@@ -37,28 +38,30 @@ export default (
   marked.use(extendedTables());
 
   marked.use(markedKatex({ throwOnError: false }));
-
   marked.use(
-    markedLinkifyIt({
-      "@": {
-        validate: /^[^ \/\n]*/,
-        // @ts-ignore
-        normalize: (match) =>
-          (match.url = "https://.com/@" + match.url.replace(/^@/, "")),
+    markedLinkifyIt(
+      {
+        "@": {
+          validate: /^[^ \/\n]*/,
+          // @ts-ignore
+          normalize: (match) =>
+            (match.url = "https://.com/@" + match.url.replace(/^@/, "")),
+        },
+        "#": {
+          validate: /^[^ \/\n]*/,
+          // @ts-ignore
+          normalize: (match) =>
+            (match.url = "https://.com/s/" + encodeURIComponent(match.url)),
+        },
+        ":": {
+          validate: /^[^ \/\n]*/,
+          // @ts-ignore
+          normalize: (match) =>
+            (match.url = "https://.com/c/" + match.url.replace(/^\:/, "")),
+        },
       },
-      "#": {
-        validate: /^[^ \/\n]*/,
-        // @ts-ignore
-        normalize: (match) =>
-          (match.url = "https://.com/s/" + encodeURIComponent(match.url)),
-      },
-      ":": {
-        validate: /^[^ \/\n]*/,
-        // @ts-ignore
-        normalize: (match) =>
-          (match.url = "https://.com/c/" + match.url.replace(/^\:/, "")),
-      },
-    }),
+      { fuzzyLink: false, tlds },
+    ),
   );
   marked.use(markedFootnote({ description: footnotes }));
   const parsed = marked.parse(mdpug, { breaks: true, renderer }) as string;

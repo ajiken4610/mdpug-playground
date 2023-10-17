@@ -21,9 +21,8 @@ watchEffect(async () => {
       true,
       10000,
     );
-    const inserted = makeATagTop(parsed, true);
     url.value = getDataUrl(
-      inserted + `<style>${highlightcss}${katexcss}${mdcss}</style>`,
+      parsed + `<style>${highlightcss}${katexcss}${mdcss}</style>`,
     );
   } catch (e) {
     emit("log", (e as { toString: () => string }).toString().split("\n")[0]!);
