@@ -39,7 +39,7 @@ $headings: "h1", "h2", "h3", "h4", "h5", "h6";
 
 @for $headingIndex from 1 through 6 {
   .mdpug :deep(h#{$headingIndex}) {
-    font-size: (8 - $headingIndex) * 0.5rem;
+    font-size: (7 - $headingIndex) * 0.5rem;
   }
 }
 

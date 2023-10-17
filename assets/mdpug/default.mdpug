@@ -1,10 +1,10 @@
 # MDPug
 **Markdown + Pug**
+You can write Markdown at top level of the source.
+In Markdown, you can write Pug using `!pug`block.
+In Pug statements, you can write Markdown using `md()` or `:md`.
 
 ````!pug
-- b = (b) => {o = pug_html; pug_html = ""; b(); e = pug_html; pug_html = o;return e}
-- r = (r) => pug_html += r
-
 mixin section(title,i)
   - r(md(`${"#".repeat(i)} ${title}`))
   div(style={"margin-top":".5rem","margin-bottom":".5rem","border-bottom":"1px solid gray"})
@@ -12,10 +12,10 @@ mixin section(title,i)
 
 mixin example(title)
   +section(title,2)
-  - source = b(block)
+  - var source = b(block)
   +section("Source",3).
     ````md
-    #{source}
+    !{source}
     ````
   +section("Result",3)!= source
 
@@ -25,21 +25,45 @@ mixin example(title)
 
 +example("Pug in Markdown").
   ```!pug
-  - for(var i = 0;i < 3;i++)
-    div \#{i}
+  div hello
   ```
-
-+example("STATIC Markdown in Pug in Markdown").
++example("*STATIC* Markdown in Pug in Markdown").
   ```!pug
   - for(var i = 0;i < 3;i++)
-    :md ##### No variable can be used here. So, this won't work: \#{i} or ${i}
+    :md > No variables can be used here. So, this won't work: \#{i} or \${i}
   ```
 
-+example("DYNAMIC Markdown in Pug in Markdown").
++example("*DYNAMIC* Markdown in Pug in Markdown").
   ```!pug
   - for(var i = 0;i < 3;i++)
-    - p = md(`${'#'.repeat(i+1)} ***Variables can be used here: ${i}***`)
-    div!= p
+    - r(md(`> Variables can be used here: ${i}`))
   ```
 
++example("Declared functions and filters can be used in Pug statements").
+  #### r(html)
+  `r(html)` will render HTML received in arguments.
+  This is commonly used with md() or b(block) function.
+  ```!pug
+  - r(`<em>ITALIC TEXT</em>`)
+  ```
+  #### b(block)
+  `b(block)` will return mixin block as string.
+  ```!pug
+  mixin test
+    - block && console.log(b(block))
+  +test
+  +test This text will appear in console.
+  ```
+  #### md(markdown)
+  `md(markdown)` compiles the Markdown received as an argument into HTML and returns it.
+  This commonly used with r() function.
+  ```!pug
+  - r(md(`> Random number: ${Math.random()}`))
+  ```
+  #### :md markdown
+  `:md markdown` allows you to write STATIC Markdown in Pug.
+  Please note that **NO** variables defined in Pug can be used within this filter.
+  ```!pug
+  :md > This statement is decorated using Markdown.
+  ```
 ````

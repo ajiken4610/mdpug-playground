@@ -43,5 +43,18 @@ export default (
   outerVariables = variables || {};
   outerVariables["md"] = (text: string) =>
     parseMDPug(text, footnote, outerVariables);
-  return pug.compile(pugmd, options)(outerVariables);
+  //   console.log(
+  //     pug
+  //       .compile(
+  //         '- b = (b) => {var o = pug_html; pug_html = ""; b(); var e = pug_html; pug_html = o;return e}, r = (s) => pug_html += s\n' +
+  //           pugmd,
+  //         options,
+  //       )
+  //       .toString(),
+  //   );
+  return pug.compile(
+    '- var b = (b) => {var o = pug_html; pug_html = ""; b(); var e = pug_html; pug_html = o;return e}, r = (s) => pug_html += s\n' +
+      pugmd,
+    options,
+  )(outerVariables);
 };
