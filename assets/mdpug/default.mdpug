@@ -39,7 +39,7 @@ mixin example(title)
     - r(md(`> Variables can be used here: ${i}`))
   ```
 
-+example("Declared functions and filters can be used in Pug statements").
++example("Declared functions and filters which can be used in Pug statements").
   #### r(html)
   `r(html)` will render HTML received in arguments.
   This is commonly used with md() or b(block) function.
