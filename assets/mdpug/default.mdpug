@@ -36,7 +36,7 @@ mixin example(title)
 +example("*DYNAMIC* Markdown in Pug in Markdown").
   ```!pug
   - for(var i = 0;i < 3;i++)
-    +md. > Variables can be used here: \#{i}
+    +md > Variables can be used here: \#{i}
   ```
 
 +example("Declared functions, mixins and filters which can be used in Pug statements").
