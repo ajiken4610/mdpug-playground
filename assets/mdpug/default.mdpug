@@ -6,9 +6,9 @@ In Pug statements, you can write Markdown using `+md`, `md()` or `:md`.
 
 ````!pug
 mixin section(title,i)
-  - r(md(`${"#".repeat(i)} ${title}`))
+  +md #{"#".repeat(i)} #{title}
   div(style={"margin-top":".5rem","margin-bottom":".5rem","border-bottom":"1px solid gray"})
-  - block && r(md(b(block)))
+  +md!= block && b(block)
 
 mixin example(title)
   +section(title,2)
@@ -30,7 +30,7 @@ mixin example(title)
 +example("*STATIC* Markdown in Pug in Markdown").
   ```!pug
   - for(var i = 0;i < 3;i++)
-    :md > No variables can be used here. So, this won't work: \#{i} or \${i}
+    :md > No variables can be used here. So, this won't work: \\#{i} or ${i}
   ```
 
 +example("*DYNAMIC* Markdown in Pug in Markdown").
