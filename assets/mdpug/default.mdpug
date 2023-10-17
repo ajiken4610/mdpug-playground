@@ -1,6 +1,6 @@
 # MDPug
 **Markdown + Pug**
-You can write Markdown at top level of the source.
+You can write Markdown at the top level of the source.
 In Markdown, you can write Pug using `!pug`block.
 In Pug statements, you can write Markdown using `+md`, `md()` or `:md`.
 
@@ -36,8 +36,7 @@ mixin example(title)
 +example("*DYNAMIC* Markdown in Pug in Markdown").
   ```!pug
   - for(var i = 0;i < 3;i++)
-    +md.
-      > Variables can be used here: \#{i}
+    +md. > Variables can be used here: \#{i}
   ```
 
 +example("Declared functions, mixins and filters which can be used in Pug statements").
