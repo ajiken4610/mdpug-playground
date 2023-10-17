@@ -21,7 +21,7 @@ mixin example(title)
 
 +example("Markdown").
   # title
-  This is Markdown-decorated text.
+  This is **Markdown-decorated** text.
 
 +example("Pug in Markdown").
   ```!pug
@@ -57,7 +57,7 @@ mixin example(title)
   ```
   #### md(markdown)
   `md(markdown)` compiles the Markdown received as an argument into HTML and returns it.
-  This commonly used with r() function.
+  This is commonly used with r() function.
   ```!pug
   - r(md(`> Random number: ${Math.random()}`))
   ```
