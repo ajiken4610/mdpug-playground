@@ -1,25 +1,30 @@
-<!-- eslint-disable vue/no-v-html -->
 <template lang="pug">
-.mdpug(v-html="parsed")
+iframe.w-full.h-full(:src="url")
 </template>
 
 <script setup lang="ts">
 import "highlight.js/styles/github.css";
+import highlightcss from "highlight.js/styles/github.css?raw";
 import "katex/dist/katex.min.css";
+import katexcss from "katex/dist/katex.min.css?raw";
+import mdcss from "assets/css/md.css?raw";
 const props = withDefaults(defineProps<{ mdpug: string }>(), {
   mdpug: "# NO_MDPUG_PROVIDED",
 });
 const emit = defineEmits<(e: "log", message: string) => unknown>();
-const parsed = ref("");
+const url = ref("");
 watchEffect(async () => {
   let error = false;
   try {
-    parsed.value = await parseSanitizedMDPugOnWorker(
+    const parsed = await parseSanitizedMDPugOnWorker(
       props.mdpug,
       "Footnotes:",
       undefined,
       true,
       10000,
+    );
+    url.value = getDataUrl(
+      parsed + `<style>${highlightcss}${katexcss}${mdcss}</style>`,
     );
   } catch (e) {
     emit("log", (e as { toString: () => string }).toString().split("\n")[0]!);
@@ -30,54 +35,3 @@ watchEffect(async () => {
   }
 });
 </script>
-<style scoped lang="scss">
-.mdpug :deep(ul) {
-  list-style-type: disc;
-  padding-left: 2rem;
-}
-
-.mdpug :deep(ol) {
-  list-style-type: decimal;
-  padding-left: 1rem;
-}
-
-$headings: "h1", "h2", "h3", "h4", "h5", "h6";
-
-@for $headingIndex from 1 through 6 {
-  .mdpug :deep(h#{$headingIndex}) {
-    font-size: (7 - $headingIndex) * 0.5rem;
-  }
-}
-
-.mdpug :deep(pre),
-.mdpug :deep(:not(pre) > code) {
-  border: 1px solid black;
-  border-radius: 0.25rem;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-}
-
-.mdpug :deep(pre) {
-  overflow-x: auto;
-}
-
-.mdpug :deep(blockquote) {
-  border-left: 0.25rem solid;
-  padding-left: 0.5rem;
-  border-color: gray;
-}
-
-.mdpug :deep(table) {
-  border-spacing: 0px;
-}
-
-.mdpug :deep(td),
-.mdpug :deep(th) {
-  border: 1px black solid;
-  padding: 0.2rem;
-}
-
-.mdpug :deep(a) {
-  text-decoration: underline;
-}
-</style>

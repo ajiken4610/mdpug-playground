@@ -5,9 +5,14 @@ In Markdown, you can write Pug using `!pug`block.
 In Pug statements, you can write Markdown using `+md`, `md()` or `:md`.
 
 ````!pug
+style.
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    border-bottom: 1px solid gray
+  }
 mixin section(title,i)
   +md #{"#".repeat(i)} #{title}
-  div(style={"margin-top":".5rem","margin-bottom":".5rem","border-bottom":"1px solid gray"})
   +md!= block && b(block)
 
 mixin example(title)
@@ -20,7 +25,7 @@ mixin example(title)
   +section("Result",3)!= source
 
 +example("Markdown").
-  # title
+  #### title
   This is **Markdown-decorated** text.
 
 +example("Pug in Markdown").
