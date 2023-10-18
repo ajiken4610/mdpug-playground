@@ -47,7 +47,7 @@ mixin example(title)
     +md > Variables can be used here: \#{i}
   ```
 
-+example("Declared functions, mixins and filters which can be used in Pug statements").
++example("Declared functions, variables, mixins and filters which can be used in Pug statements").
   #### r(html)
   `r(html)` will render HTML received in arguments.
   This is commonly used with md() or b(block) function.
@@ -62,6 +62,11 @@ mixin example(title)
     - block && console.log(b(block))
   +test
   +test This text will appear in console.
+  ```
+  #### s
+  `s` represents the top-level Pug (Pug top-level, not Markdown) source code.
+  ```!pug
+  small #{s}
   ```
   #### :md markdown
   `:md markdown` allows you to write STATIC Markdown in Pug.
