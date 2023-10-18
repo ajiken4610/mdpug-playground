@@ -1,0 +1,22 @@
+```!pug
+- const random = (x, y, z) => ((Math.sin( x * 12.9898 + y * 78.233 + z * 46.7483) + 1) * 43758.5453) % 1
+- const w=24, h=24, t=8
+- const sr=255, sg=0, sb=0
+- const er=0, eg=255, eb=128
+pre(style={width:"fit-content","font-size":"2rem",margin:"auto"})
+  - for(var i = 0;i < h;i++)
+    - for(var j = 0;j < w;j++)
+      style
+        | @keyframes _#{i}-#{j} {
+        - const d = Math.floor(random(i/h,j/w,-1)*4*10)/10+1
+        - for(var k = 0;k < t + 1;k++)
+          - const grad = Math.floor(random(i/h,j/w,2*k)*4)/3
+          - const r = Math.floor(sr*grad+er*(1-grad))
+          - const g = Math.floor(sg*grad+eg*(1-grad))
+          - const b = Math.floor(sb*grad+eb*(1-grad))
+          - const bin = Math.floor(random(i/h,j/w,1+2*k)*2)
+          | #{Math.floor(k/t*100)}%{color:rgb(#{r},#{g},#{b});content:"#{bin?"□":"■"}"}
+        | }._#{i}-#{j}::before{animation:_#{i}-#{j} #{d}s infinite;content:""}
+      span(class=`_${i}-${j}`)
+    br
+```
