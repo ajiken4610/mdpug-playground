@@ -52,9 +52,14 @@ export default (
   //       )
   //       .toString(),
   //   );
-  return pug.compile(
+  //@ts-ignore
+  globalThis.s === undefined && (globalThis.s = pugmd);
+  const rendered = pug.compile(
     '- var b = (b) => {var o = pug_html; pug_html = ""; b(); var e = pug_html; pug_html = o;return e}, r = (s) => pug_html += s\nmixin md\n  - r(md(b(block)))\n' +
       pugmd,
     options,
   )(outerVariables);
+  // @ts-ignore
+  globalThis.s = undefined;
+  return rendered;
 };
