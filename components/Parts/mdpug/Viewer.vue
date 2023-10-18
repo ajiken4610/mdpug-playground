@@ -1,5 +1,5 @@
 <template lang="pug">
-iframe.w-full.h-full(:srcdoc="doc")
+iframe.w-full.h-full(ref="iframeRef", :srcdoc="doc")
 </template>
 
 <script setup lang="ts">
@@ -11,6 +11,7 @@ const props = withDefaults(defineProps<{ mdpug: string }>(), {
 });
 const emit = defineEmits<(e: "log", message: string) => unknown>();
 const doc = ref("");
+
 watchEffect(async () => {
   let error = false;
   try {
@@ -36,5 +37,30 @@ watchEffect(async () => {
   if (!error) {
     emit("log", "");
   }
+});
+const iframeRef = ref<HTMLIFrameElement>();
+const isATag = (node: Element): node is HTMLAnchorElement =>
+  node.tagName === "A";
+onMounted(() => {
+  if (!iframeRef.value) {
+    return;
+  }
+  const iframe = iframeRef.value;
+  iframe.addEventListener("load", () => {
+    if (!iframeRef.value) {
+      return;
+    }
+    const iframe = iframeRef.value;
+    iframe.contentDocument?.querySelectorAll("a[href]").forEach((el) => {
+      let href: string;
+      if (isATag(el) && (href = el.getAttribute("href") || "")?.match(/^#/)) {
+        el.addEventListener("click", (e) => {
+          e.preventDefault();
+          const targetElement = iframe.contentDocument?.querySelector(href);
+          targetElement && targetElement.scrollIntoView();
+        });
+      }
+    });
+  });
 });
 </script>
