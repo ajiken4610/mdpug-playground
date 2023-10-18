@@ -4,7 +4,6 @@
     textarea.w-full.h-full.bg-transparent.resize-none.whitespace-nowrap(
       ref="textareaRef",
       v-model="code",
-      v-auto-focus,
       class="focus:outline-0"
     )
 </template>
@@ -92,8 +91,4 @@ onMounted(() => {
     }
   });
 });
-
-const vAutoFocus = (el: HTMLTextAreaElement) => {
-  el.focus();
-};
 </script>
