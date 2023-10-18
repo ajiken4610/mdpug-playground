@@ -1,5 +1,5 @@
 <template lang="pug">
-iframe.w-full.h-full(:src="url")
+iframe.w-full.h-full(:srcdoc="doc")
 </template>
 
 <script setup lang="ts">
@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<{ mdpug: string }>(), {
   mdpug: "# NO_MDPUG_PROVIDED",
 });
 const emit = defineEmits<(e: "log", message: string) => unknown>();
-const url = ref("");
+const doc = ref("");
 watchEffect(async () => {
   let error = false;
   try {
@@ -21,11 +21,16 @@ watchEffect(async () => {
       true,
       10000,
     );
-    url.value = getDataUrl(
-      parsed + `<style>${highlightcss}${katexcss}${mdcss}</style>`,
-    );
+    doc.value = parsed + `<style>${highlightcss}${katexcss}${mdcss}</style>`;
   } catch (e) {
-    emit("log", (e as { toString: () => string }).toString().split("\n")[0]!);
+    const message = (e as { toString: () => string })
+      .toString()
+      .split("\n")
+      .map((line) =>
+        line.match("https://github.com/markedjs/marked") ? "" : line,
+      )
+      .join("\n");
+    emit("log", message);
     error = true;
   }
   if (!error) {

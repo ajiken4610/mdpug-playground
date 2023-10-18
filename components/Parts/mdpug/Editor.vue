@@ -66,7 +66,11 @@ onMounted(() => {
           textarea.selectionEnd = end + (endLine - startLine + 1) * 2;
         });
       }
-    } else if (ev.key === "Enter" && start === end) {
+    } else if (
+      ev.key === "Enter" &&
+      start === end &&
+      lines.slice(0, startLine + 1).join("\n").length === start
+    ) {
       ev.preventDefault();
       let deletedCount = endLine - startLine;
       for (var i = startLine + 1; i < endLine + 1; i++) {

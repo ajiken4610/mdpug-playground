@@ -4450,6 +4450,17 @@
     "path": "D:\\Documents\\.node_projects\\mdpug-playground\\node_modules\\error-stack-parser-es",
     "licenseFile": "D:\\Documents\\.node_projects\\mdpug-playground\\node_modules\\error-stack-parser-es\\LICENSE"
   },
+  "error-stack-parser@2.1.4": {
+    "licenses": "MIT",
+    "repository": "https://github.com/stacktracejs/error-stack-parser",
+    "name": "error-stack-parser",
+    "version": "2.1.4",
+    "description": "Extract meaning from JS Errors",
+    "copyright": "Copyright (c) 2017 Eric Wendelin and other contributors",
+    "licenseText": "Copyright (c) 2017 Eric Wendelin and other contributors\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \"Software\"), to deal in\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies\nof the Software, and to permit persons to whom the Software is furnished to do\nso, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.",
+    "path": "D:\\Documents\\.node_projects\\mdpug-playground\\node_modules\\error-stack-parser",
+    "licenseFile": "D:\\Documents\\.node_projects\\mdpug-playground\\node_modules\\error-stack-parser\\LICENSE"
+  },
   "es5-ext@0.10.62": {
     "licenses": "ISC",
     "repository": "https://github.com/medikoo/es5-ext",
@@ -11166,6 +11177,19 @@
     "path": "D:\\Documents\\.node_projects\\mdpug-playground\\node_modules\\source-map-support",
     "licenseFile": "D:\\Documents\\.node_projects\\mdpug-playground\\node_modules\\source-map-support\\LICENSE.md"
   },
+  "source-map@0.5.6": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/mozilla/source-map",
+    "publisher": "Nick Fitzgerald",
+    "email": "nfitzgerald@mozilla.com",
+    "name": "source-map",
+    "version": "0.5.6",
+    "description": "Generates and consumes source maps",
+    "copyright": "",
+    "licenseText": "Copyright (c) 2009-2011, Mozilla Foundation and contributors\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n* Redistributions of source code must retain the above copyright notice, this\n  list of conditions and the following disclaimer.\n\n* Redistributions in binary form must reproduce the above copyright notice,\n  this list of conditions and the following disclaimer in the documentation\n  and/or other materials provided with the distribution.\n\n* Neither the names of the Mozilla Foundation nor the names of project\n  contributors may be used to endorse or promote products derived from this\n  software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND\nANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\nWARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE\nFOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL\nDAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\nSERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\nCAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,\nOR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.",
+    "path": "D:\\Documents\\.node_projects\\mdpug-playground\\node_modules\\stacktrace-gps\\node_modules\\source-map",
+    "licenseFile": "D:\\Documents\\.node_projects\\mdpug-playground\\node_modules\\stacktrace-gps\\node_modules\\source-map\\LICENSE"
+  },
   "source-map@0.6.1": {
     "licenses": "BSD-3-Clause",
     "repository": "https://github.com/mozilla/source-map",
@@ -11321,6 +11345,50 @@
     "licenseText": "ISC License\n\nCopyright 2021 (c) npm, Inc.\n\nPermission to use, copy, modify, and/or distribute this software for\nany purpose with or without fee is hereby granted, provided that the\nabove copyright notice and this permission notice appear in all copies.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\" AND THE COPYRIGHT HOLDER DISCLAIMS\nALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED\nWARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE\nCOPYRIGHT HOLDER BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR\nCONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS\nOF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE\nOR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE\nUSE OR PERFORMANCE OF THIS SOFTWARE.",
     "path": "D:\\Documents\\.node_projects\\mdpug-playground\\node_modules\\ssri",
     "licenseFile": "D:\\Documents\\.node_projects\\mdpug-playground\\node_modules\\ssri\\LICENSE.md"
+  },
+  "stack-generator@2.0.10": {
+    "licenses": "MIT",
+    "repository": "https://github.com/stacktracejs/stack-generator",
+    "name": "stack-generator",
+    "version": "2.0.10",
+    "description": "Generate artificial backtrace by walking arguments.callee.caller chain",
+    "copyright": "Copyright (c) 2017 Eric Wendelin and other contributors",
+    "licenseText": "Copyright (c) 2017 Eric Wendelin and other contributors\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \"Software\"), to deal in\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies\nof the Software, and to permit persons to whom the Software is furnished to do\nso, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.",
+    "path": "D:\\Documents\\.node_projects\\mdpug-playground\\node_modules\\stack-generator",
+    "licenseFile": "D:\\Documents\\.node_projects\\mdpug-playground\\node_modules\\stack-generator\\LICENSE"
+  },
+  "stackframe@1.3.4": {
+    "licenses": "MIT",
+    "repository": "https://github.com/stacktracejs/stackframe",
+    "name": "stackframe",
+    "version": "1.3.4",
+    "description": "JS Object representation of a stack frame",
+    "copyright": "Copyright (c) 2017 Eric Wendelin and other contributors",
+    "licenseText": "Copyright (c) 2017 Eric Wendelin and other contributors\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \"Software\"), to deal in\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies\nof the Software, and to permit persons to whom the Software is furnished to do\nso, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.",
+    "path": "D:\\Documents\\.node_projects\\mdpug-playground\\node_modules\\stackframe",
+    "licenseFile": "D:\\Documents\\.node_projects\\mdpug-playground\\node_modules\\stackframe\\LICENSE"
+  },
+  "stacktrace-gps@3.1.2": {
+    "licenses": "MIT",
+    "repository": "https://github.com/stacktracejs/stacktrace-gps",
+    "name": "stacktrace-gps",
+    "version": "3.1.2",
+    "description": "Turns partial code location into precise code location",
+    "copyright": "Copyright (c) 2017 Eric Wendelin and other contributors",
+    "licenseText": "Copyright (c) 2017 Eric Wendelin and other contributors\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \"Software\"), to deal in\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies\nof the Software, and to permit persons to whom the Software is furnished to do\nso, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.",
+    "path": "D:\\Documents\\.node_projects\\mdpug-playground\\node_modules\\stacktrace-gps",
+    "licenseFile": "D:\\Documents\\.node_projects\\mdpug-playground\\node_modules\\stacktrace-gps\\LICENSE"
+  },
+  "stacktrace-js@2.0.2": {
+    "licenses": "MIT",
+    "repository": "https://github.com/stacktracejs/stacktrace.js",
+    "name": "stacktrace-js",
+    "version": "2.0.2",
+    "description": "Framework-agnostic, micro-library for getting stack traces in all environments",
+    "copyright": "Copyright (c) 2017 Eric Wendelin and other contributors",
+    "licenseText": "Copyright (c) 2017 Eric Wendelin and other contributors\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \"Software\"), to deal in\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies\nof the Software, and to permit persons to whom the Software is furnished to do\nso, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.",
+    "path": "D:\\Documents\\.node_projects\\mdpug-playground\\node_modules\\stacktrace-js",
+    "licenseFile": "D:\\Documents\\.node_projects\\mdpug-playground\\node_modules\\stacktrace-js\\LICENSE"
   },
   "standard-as-callback@2.1.0": {
     "licenses": "MIT",
