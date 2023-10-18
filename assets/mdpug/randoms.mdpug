@@ -3,10 +3,10 @@
 - const w=24, h=24, t=8
 - const sr=255, sg=0, sb=0
 - const er=0, eg=255, eb=128
-pre(style={width:"fit-content","font-size":"2rem",margin:"auto"})
+pre(style={width:"fit-content","font-size":`${66/Math.min(w,h)}vw`,margin:"auto"})
   - for(var i = 0;i < h;i++)
     - for(var j = 0;j < w;j++)
-      style
+      style 
         | @keyframes _#{i}-#{j} {
         - const d = Math.floor(random(i/h,j/w,-1)*4*10)/10+1
         - for(var k = 0;k < t + 1;k++)

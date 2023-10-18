@@ -4,6 +4,7 @@
     textarea.w-full.h-full.bg-transparent.resize-none.whitespace-nowrap(
       ref="textareaRef",
       v-model="code",
+      v-auto-focus,
       class="focus:outline-0"
     )
 </template>
@@ -16,7 +17,7 @@ const props = defineProps<{
 const emit = defineEmits(["update:modelValue"]);
 const code = ref(props.modelValue);
 watch(toRef(props, "modelValue"), (text) => (code.value = text));
-const debounsedCode = refDebounced(code, 500);
+const debounsedCode = refDebounced(code, 1000);
 watch(debounsedCode, (code) => {
   emit("update:modelValue", code);
 });
@@ -26,6 +27,10 @@ onMounted(() => {
     return;
   }
   const textarea = textareaRef.value;
+  textarea.addEventListener("contextmenu", (ev) => {
+    ev.preventDefault();
+    code.value && useRouter().replace("/" + stringToBase64(code.value));
+  });
   textarea.addEventListener("keydown", (ev) => {
     const text = code.value;
     const lines = text.split("\n");
@@ -87,4 +92,8 @@ onMounted(() => {
     }
   });
 });
+
+const vAutoFocus = (el: HTMLTextAreaElement) => {
+  el.focus();
+};
 </script>

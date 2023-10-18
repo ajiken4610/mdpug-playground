@@ -4,7 +4,6 @@
 </template>
 
 <script setup lang="ts">
-import defaultSource from "assets/mdpug/default.mdpug?raw";
-const code = ref(defaultSource);
+const code = ref("");
 provide("code", code);
 </script>

@@ -11,6 +11,11 @@
 
 <script setup lang="ts">
 const code = inject<Ref<string>>("code")!;
+try {
+  code.value = base64ToString(useRoute().fullPath.substring(1));
+} catch (e) {
+  useRouter().replace("/");
+}
 const errorMessage = ref("");
 const log = (text?: string) => {
   errorMessage.value = text || "";
