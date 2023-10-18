@@ -1,6 +1,6 @@
 <template lang="pug">
 .overflow-hidden
-  NuxtPage(keepalive)
+  NuxtPage
 </template>
 
 <script setup lang="ts">
