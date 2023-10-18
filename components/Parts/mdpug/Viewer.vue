@@ -1,11 +1,19 @@
 <template lang="pug">
-iframe.w-full.h-full(ref="iframeRef", :srcdoc="doc")
+.h-full(ref="outerRef")
+  iframe.w-full.h-full(v-show="mode===0", ref="iframeRef", :srcdoc="doc")
+  .h-full.whitespace-pre-wrap.font-mono(v-if="mode === 1") 
+    h1.text-xl You're viewing raw source code.
+    | {{ props.mdpug }}
+  .h-full.whitespace-pre-wrap.font-mono(v-if="mode === 2")
+    h1.text-xl You're viewing compiled source code.
+    |
+    | {{ doc }}
 </template>
 
 <script setup lang="ts">
 import highlightcss from "highlight.js/styles/github.min.css?raw";
 import katexcss from "katex/dist/katex.min.css?raw";
-import mdcss from "assets/css/md.css?raw";
+import mdcss from "assets/css/md.min.css?raw";
 const props = withDefaults(defineProps<{ mdpug: string }>(), {
   mdpug: "# NO_MDPUG_PROVIDED",
 });
@@ -41,6 +49,8 @@ watchEffect(async () => {
 const iframeRef = ref<HTMLIFrameElement>();
 const isATag = (node: Element): node is HTMLAnchorElement =>
   node.tagName === "A";
+
+const mode = ref(0);
 onMounted(() => {
   if (!iframeRef.value) {
     return;
@@ -51,6 +61,10 @@ onMounted(() => {
       return;
     }
     const iframe = iframeRef.value;
+    iframe.contentDocument?.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+      mode.value = (mode.value + 1) % 3;
+    });
     iframe.contentDocument?.querySelectorAll("a[href]").forEach((el) => {
       let href: string;
       if (isATag(el) && (href = el.getAttribute("href") || "")?.match(/^#/)) {
@@ -61,6 +75,17 @@ onMounted(() => {
         });
       }
     });
+  });
+});
+
+const outerRef = ref<HTMLDivElement>();
+onMounted(() => {
+  if (!outerRef.value) {
+    return;
+  }
+  outerRef.value.addEventListener("contextmenu", (ev) => {
+    ev.preventDefault();
+    mode.value = (mode.value + 1) % 3;
   });
 });
 </script>
