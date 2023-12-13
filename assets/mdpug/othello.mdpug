@@ -1,0 +1,66 @@
+```!pug
+- let v = null
+- if(!v)
+  - v = {turn:1,stones:Array(64).fill(0),passed:0}
+  - v.stones[27] = -1, v.stones[28] = 1, v.stones[35] = 1, v.stones[36] = -1
+- const stoneText = {"-2":"○","-1":"○",0:" ",1:"●",2:"●"}
+- const directions = [[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1],[0,-1],[1,-1]]
+- const get = (x,y) => v.stones[x+y*8]
+- const set = (x,y,val,stones) => stones[x+y*8]=val
+- const c = (x,y,d,t=1) => {const nx=x+d[0]*t,ny=y+d[1]*t;if(nx<0||ny<0||nx>7||ny>7){return false}const cr=get(x,y);const nr=get(nx,ny);if(cr!==0||(t===1&&nr===v.turn)||nr===0){return false}if(nr===v.turn&&t>1){return true}return c(x,y,d,t+1)}
+- const puttable = (x,y) => directions.reduce((cu,d)=>cu||c(x,y,d),false)
+- const putDir = (x,y,d,stones) => {for(var i = 1;;i++){const nx=x+d[0]*i,ny=y+d[1]*i,cr=get(nx,ny);if(nx<0||ny<0||nx>7||ny>7||cr===v.turn||cr===0){break}set(nx,ny,v.turn,stones)}}
+- const getPut = (x,y) => {const ret=[...v.stones];ret[x+y*8]=v.turn;directions.forEach((dir)=>c(x,y,dir)&&putDir(x,y,dir,ret));return ret}
+- const dispStones = [...v.stones]
+- const ls = s.split("\n")
+- const getPutUrl = (stones,pass=false) => {ls[0]="- let v = "+JSON.stringify({stones,turn:-v.turn,passed:pass});return "https://ajiken4610.github.io/mdpug-playground/#/"+btoa(unescape(encodeURIComponent("```!pug\n" + ls.join("\n"))))}
+- const getPassedUrl = () => getPutUrl(v.stones,true)
+- const getResetUrl = () => {ls[0]="- let v = null";return "https://ajiken4610.github.io/mdpug-playground/#/"+btoa(unescape(encodeURIComponent("```!pug\n" + ls.join("\n"))))}
+mixin gameover
+  div GAME OVER
+  div
+    | Black:#{v.stones.filter((st)=>st===1).length}
+    | White:#{v.stones.filter((st)=>st===-1).length}
+  a(
+      style={border:"1px solid",display:"block",margin:"1rem auto",width:"fit-content","border-radius":".25rem"}
+      href=getResetUrl()
+    ) RESET
+div(style="text-align:center")
+  :md # OTHELLO IN MDPUG
+  - let pass = true;
+  table(style="margin:auto")
+    - for(var i = 0;i < 8;i++)
+      tr
+        - for(var j = 0;j < 8;j++)
+          - let p;
+          - (p = puttable(i,j)) && (dispStones[i+j*8]=v.turn*2)
+          td 
+            - if(p)
+              - pass = false
+              - const put = getPut(i,j)
+              a(href=getPutUrl(put)) #{stoneText[dispStones[i+j*8]]}
+            - else
+              | #{stoneText[dispStones[i+j*8]]}
+  - if(v.passed&&pass||v.stones.filter((st)=>st===0).length===0)
+    +gameover
+  - else if(pass)
+    a(
+      style={border:"1px solid",display:"block",margin:"1rem auto",width:"fit-content","border-radius":".25rem"}
+      href=getPassedUrl()
+    ) PASS
+style.
+  td {
+    width:3rem;
+    height:3rem;
+    font-size:2rem;
+    border:1px solid black;
+    background-color:greenyellow;
+  }
+  td>a{
+    font-size:1rem;
+    color:gray
+  }
+  a{
+    text-decoration:none;
+    color:black
+  }
